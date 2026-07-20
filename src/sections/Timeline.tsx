@@ -8,10 +8,10 @@ import {Fragment} from 'react';
 
 import {experience, research, type TimelineEntry} from '../data';
 
-const BADGE_VARIANT: Record<string, 'info' | 'blue' | 'teal'> = {
+const BADGE_VARIANT: Record<string, 'info' | 'neutral'> = {
   Current: 'info',
-  Industry: 'blue',
-  'Gov R&D': 'teal',
+  Industry: 'neutral',
+  'Gov R&D': 'neutral',
 };
 
 function TimelineRow({entry}: {entry: TimelineEntry}) {

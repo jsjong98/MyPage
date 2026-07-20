@@ -5,8 +5,18 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+/* Theme tokens resolve reliably only inside the Theme wrapper element that
+   React renders under #root — on <html>/<body> they fall back to unthemed
+   core defaults (which flip with the OS color scheme). Paint the page
+   background on the wrapper; html gets a static fallback for overscroll,
+   matching stone's light body value since the site is locked to light mode. */
+html {
+  background: #f3f3f5;
+}
+
+#root > [data-astryx-theme] {
   background: var(--color-background-body);
+  min-height: 100dvh;
 }
 
 .site-header {

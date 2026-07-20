@@ -16,7 +16,7 @@ export function Hero() {
       <StackItem size="fill">
         <VStack gap={4} maxWidth={560}>
           <HStack>
-            <Token color="green" label="Available for opportunities" />
+            <Token color="cyan" label="Available for opportunities" />
           </HStack>
           <VStack gap={2}>
             <Heading level={1} type="display-2">
