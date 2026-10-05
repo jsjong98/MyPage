@@ -15,9 +15,10 @@ export const experience: TimelineEntry[] = [
     role: 'AI Engineer',
     badge: 'Current',
     points: [
-      'Driving PoC projects that embed Agentic AI into real-world operations across the insurance and petrochemical domains',
-      'Formulated petrochemical production planning & scheduling as a mathematical optimization problem, designing and developing an optimization model built on the HiGHS solver',
-      'Integrating LLM agent architectures with the optimization engine to validate real-world business impact and production readiness',
+      'Refinery Company — production re-planning PoC (3-person team): owned the end-to-end pipeline design, the shortfall LP model, and the site-constraint checker — event interpretation → impact assessment → shortfall calculation → re-planning → downstream validation → comparison report',
+      'Extracted constraints from the client’s two planning-system model files (crude blending & downstream operations), merged them with unwritten site rules, and codified 20 feasibility rules that screen AI-proposed adjustments before the HiGHS-based LP recomputes crude-group shortfalls',
+      'Fed rejection reasons back into the agent’s next attempt and attached attempt history and margin impact to each candidate plan; the team produced a zero-shortfall adjustment for the representative scenario, shared at the client’s interim review',
+      'Refinery Company — equipment ontology project (ongoing): gathering requirements through interviews with mechanical, instrumentation, electrical and equipment engineering teams, defining scope, and designing an ontology that links equipment data and maintenance history for a troubleshooting assistant (ontology design in progress; chatbot development not yet started)',
     ],
   },
   {
@@ -26,8 +27,9 @@ export const experience: TimelineEntry[] = [
     location: 'Seoul, Korea',
     role: 'Research Assistant',
     points: [
-      'Led end-to-end HR AI Transformation (AX) engagement for a large conglomerate, conducting As-Is diagnostics across 6 HR domains and designing To-Be workflows via benchmarking and pain point analysis',
-      'Developed and deployed full-stack AX platform supporting AI feasibility assessment and automated consulting deliverable generation',
+      'Drafted the decision criteria and built an AI classifier to assess AI applicability for ~4,000 HR tasks across 6 group affiliates — a staged check of legal/regulatory constraints, decision & approval accountability, and need for human interaction, with later stages skipped once a task is judged human-owned',
+      'Reviewed classifications at the sub-task level with the team, e.g. splitting affiliate opinion-gathering into AI-sent requests and human analysis',
+      'Contributed to evaluating and sequencing 67 priority initiatives into a phased roadmap; proposed data-readiness as a sequencing criterion, build-vs-buy comparison, and pilot-team roles, KPIs and review checkpoints',
     ],
   },
   {
@@ -36,8 +38,9 @@ export const experience: TimelineEntry[] = [
     location: 'Seoul, Korea',
     role: 'Research Analyst',
     points: [
-      'Designed and implemented production planning optimization framework using heuristic/CP-SAT for flexible manufacturing operations across 1,000+ product families',
-      'Achieved an average 20% reduction in annual job changeover downtime, improving overall operational efficiency',
+      'Built a production-planning optimization model for 1,000+ electronic-materials product families with a team of 3 consultants — owning data preparation, model design & implementation, and scenario analysis',
+      'Prepared and joined production/sales interviews, then encoded customer due dates as hard constraints (0-day delay for priority customers, ≤7 days for others) and changeover downtime as the objective, including inter-plant volume reallocation',
+      'Ran constraint scenarios for joint production–sales reviews; the model produced a plan with 20% less changeover downtime than the existing plan, which became the baseline for the joint review',
     ],
   },
   {
@@ -46,8 +49,9 @@ export const experience: TimelineEntry[] = [
     location: 'Seoul, Korea',
     role: 'Research Assistant',
     points: [
-      'Built multi-agent AI system using 5 specialized AI techniques to predict employee turnover risk — integrating LLM/NLP, LSTM/Attention, XGBoost, Graph algorithm (Neo4j), and SHAP (XAI)',
-      'Created automated AI dashboard that generates predictions and actionable recommendations for HR teams',
+      'Designed the analysis architecture, built models, and integrated results for an internal employee-attrition prediction project using synthetic employee data built on the IBM HR dataset (1,470 employees)',
+      'Split the problem into 5 analysis modules — HR records (XGBoost + SHAP), behavioral change (Transformer autoencoder anomaly score), organizational relationships, sentiment/burnout text signals, and external labor market',
+      'Implemented the integration logic combining expert AHP weights and Bayesian-optimized weights 50/50 into Low / Potential / High risk tiers; the team placed 4th of 76 teams in the firm’s internal AI competition',
     ],
   },
 ];
@@ -57,22 +61,36 @@ export const research: TimelineEntry[] = [
     period: 'Jul 2024 – Jun 2025',
     company: 'Petrochemical Company L',
     location: 'Korea · Industry Collaboration',
-    role: 'AI Research Engineer',
+    role: 'AI-based Petrochemical Plant Decision-Making Platform',
     badge: 'Industry',
     points: [
-      'Built naphtha price forecasting platform using time-series forecasting models to predict commodity prices',
-      'Implemented cost optimization strategy demonstrating average 0.42% cost savings (~$2.4M annually) through AI-driven procurement timing decisions',
+      'Selected variables from ~80 time series (crude, product prices, FX, …) by grouping correlated variables and picking the most naphtha-correlated one from each group, for short- and long-term price forecasting',
+      'Designed the purchase-window scoring method: each daily forecast awards 3/2/1 points to the cheapest candidate windows, accumulated across updates, and surfaced with price trends and key drivers in the decision tool',
+      'A back-test over 21 half-month purchase periods showed an average 0.42% potential saving versus actual purchase prices (premium excluded)',
     ],
   },
   {
     period: 'Mar 2023 – Dec 2024',
     company: 'KEIT',
     location: 'Korea · Government R&D',
-    role: 'AI Research Engineer',
+    role: 'Data-driven Engineering Rule Library for Automated Design-Error Verification',
     badge: 'Gov R&D',
     points: [
-      'Developed AI document classification system that automatically categorizes safety design rules using NLP models',
-      'Built knowledge graph-based AI chatbot using RAG and LLM-Cypher for automated safety reasoning and validation — later filed as Korean Patent',
+      'Structured 242 safety guidelines (238 KOSHA, 4 OSHA) into a hierarchical knowledge base and implemented it as a Neo4j knowledge graph that preserves each clause’s parent context',
+      'Designed the KG-RAG Q&A flow — LLM-generated Cypher queries with direct and multi-hop retrieval — reaching 95% average accuracy across the 242 guidelines; filed as a Korean patent',
+      'Also worked on upgrading the guideline classification model and a life-cycle environmental-impact calculation engine',
+    ],
+  },
+  {
+    period: 'May 2023 – Oct 2023',
+    company: 'SKKU Startup Support Foundation',
+    location: 'Suwon, Korea · Lab Startup Club',
+    role: 'President & Development Lead — ADSP',
+    badge: 'Award',
+    points: [
+      'Interviewed process engineers from industry to turn repetitive manual design work into requirements: automated condition input, automated economic evaluation, and environmental assessment',
+      'Built the ADSP MVP: explores design alternatives from feed conditions and target product, with Pareto optimization of economics vs. CO₂ emissions and life-cycle assessment',
+      'Received the Excellent Club Award',
     ],
   },
 ];
@@ -87,49 +105,49 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: 'Agentic AI System',
-    context: 'Agentic AI · Multi-Agent System',
+    name: 'Refinery Re-planning Agent PoC',
+    context: 'Agentic AI · Optimization · Refinery Company',
     description:
-      'A production-grade multi-agent AI system integrating 5 specialized techniques — LLM/NLP, LSTM/Attention, XGBoost, Graph algorithms (Neo4j), and SHAP — to predict employee turnover risk and generate automated HR recommendations.',
-    tags: ['LangGraph', 'LLM', 'LSTM', 'XGBoost', 'Neo4j', 'SHAP'],
+      'An AI agent proposes production-plan adjustments when crude cargoes are delayed; 20 codified site rules screen each proposal and a HiGHS-based LP verifies that crude-group shortfalls are resolved. Rejection reasons feed the next attempt, and every candidate carries its attempt history and margin impact.',
+    tags: ['LLM Agent', 'Linear Programming', 'HiGHS', 'Python'],
+  },
+  {
+    name: 'Agentic AI System',
+    context: 'Multi-Module Attrition Prediction · PwC',
+    description:
+      'Five analysis modules — HR records (XGBoost + SHAP), behavioral anomalies (Transformer autoencoder), relationships, text sentiment, and external market — combined with AHP + Bayesian-optimized weights into three risk tiers. Placed 4th of 76 teams in an internal AI competition.',
+    tags: ['LangGraph', 'XGBoost', 'SHAP', 'Transformer', 'Neo4j', 'React'],
     href: 'https://github.com/jsjong98/Agentic_AI_system',
   },
   {
     name: 'AX Lens System',
-    context: 'Explainable AI · Transparency',
+    context: 'HR Task Classification · PwC',
     description:
-      'An AI explainability platform (AX Lens) designed to make black-box AI decisions transparent and interpretable for enterprise stakeholders — enabling trustworthy AI adoption through visual explanations and uncertainty quantification.',
-    tags: ['XAI', 'SHAP', 'Trustworthy AI', 'Python', 'Visualization'],
+      'Classifies ~4,000 HR tasks across 6 affiliates as AI- or human-owned with a 3-stage knock-out LLM logic (regulation → accountability → human interaction), keeping the reasoning for each decision reviewable by consultants.',
+    tags: ['LLM', 'FastAPI', 'Next.js', 'TypeScript'],
     href: 'https://github.com/jsjong98/ax-lens-system',
-  },
-  {
-    name: 'Naphtha Price Forecasting Platform',
-    context: 'Time-Series · Commodity Forecasting',
-    description:
-      'End-to-end naphtha commodity price forecasting system leveraging advanced time-series models. Achieved ~0.42% cost savings (~$2.4M/yr) through AI-driven procurement timing decisions for a major petrochemical firm.',
-    tags: ['Time-Series', 'Forecasting', 'PyTorch', 'Optimization'],
-    href: 'https://github.com/jsjong98/Mopj-project',
-  },
-  {
-    name: 'Safety Knowledge Graph Chatbot',
-    context: 'NLP · Knowledge Graph · RAG',
-    description:
-      'AI-powered safety engineering assistant combining RAG with LLM-Cypher queries over a knowledge graph (Neo4j) for automated safety design rule classification, reasoning, and validation. Filed as Korean Patent.',
-    tags: ['RAG', 'LangChain', 'Neo4j', 'NLP', 'LLM-Cypher'],
   },
   {
     name: 'Production Planning Optimizer',
     context: 'Operations Research · BCG',
     description:
-      'Designed and deployed a production planning optimization framework using heuristic algorithms and CP-SAT solvers for flexible manufacturing across 1,000+ product families. Achieved 20% reduction in annual changeover downtime.',
-    tags: ['CP-SAT', 'Heuristics', 'OR-Tools', 'Manufacturing'],
+      'Planning model for 1,000+ product families that minimizes changeover downtime while holding customer due dates as constraints (0 days for priority customers, ≤7 days otherwise) and allowing inter-plant reallocation. 20% less changeover downtime than the existing plan.',
+    tags: ['CP-SAT', 'Mixed-Integer Modeling', 'OR-Tools', 'Manufacturing'],
   },
   {
-    name: 'HR AI Transformation Platform',
-    context: 'HR Analytics · Full-Stack · PwC',
+    name: 'Naphtha Price Forecasting Platform',
+    context: 'Time-Series · Procurement Decisions',
     description:
-      'Full-stack AX (AI Transformation) platform for HR consulting engagements. Supports AI feasibility assessment across 6 HR domains, automated deliverable generation, and To-Be workflow design through benchmarking analysis.',
-    tags: ['Full-Stack', 'LLM', 'HR Analytics', 'Automation'],
+      'Short- and long-term naphtha price forecasts from ~80 variables, turned into a cumulative 3/2/1 score for candidate purchase windows. A 21-period back-test showed an average 0.42% potential saving.',
+    tags: ['Time-Series', 'Forecasting', 'Feature Selection', 'Decision Support'],
+    href: 'https://github.com/jsjong98/Mopj-project',
+  },
+  {
+    name: 'Safety Knowledge Graph Chatbot',
+    context: 'Knowledge Graph · RAG · Patent Filed',
+    description:
+      'KG-RAG assistant over 242 KOSHA/OSHA safety guidelines. LLM-generated Cypher retrieves clauses across up to five hierarchy levels — e.g. finding a minimum-flow-line exception a baseline LLM missed — with 95% average accuracy.',
+    tags: ['RAG', 'Neo4j', 'LLM-Cypher', 'NLP'],
   },
 ];
 
@@ -144,13 +162,13 @@ export const skillGroups: SkillGroup[] = [
     label: 'AI Domains',
     color: 'cyan',
     items: [
-      'eXplainable AI (XAI)',
       'Agentic AI (Multi-Agent)',
-      'RAG',
-      'Trustworthy AI',
-      'NLP',
+      'Knowledge Graph · RAG',
+      'eXplainable AI (XAI)',
       'Time-Series Forecasting',
-      'Operations Research',
+      'Mathematical Optimization (LP / MIP)',
+      'Uncertainty Quantification',
+      'NLP',
     ],
   },
   {
@@ -160,10 +178,10 @@ export const skillGroups: SkillGroup[] = [
       'XGBoost',
       'SHAP / LIME',
       'LLM Integration (GPT-4o/5)',
-      'GRU + CNN + Attention',
-      'LSTM / Attention',
+      'Transformer Autoencoder',
+      'GRU / LSTM / Attention',
+      'DNN Surrogate Models',
       'PyTorch',
-      'TensorFlow',
       'HiGHS / CP-SAT',
     ],
   },
@@ -173,9 +191,17 @@ export const skillGroups: SkillGroup[] = [
     items: ['Python', 'LangGraph', 'LangChain', 'FastAPI', 'React / Next.js', 'TypeScript'],
   },
   {
-    label: 'Data & Infrastructure',
+    label: 'Data, Process & Infrastructure',
     color: 'gray',
-    items: ['Neo4j (Graph DB)', 'NumPy / Pandas', 'Docker / Compose', 'Git', 'Railway (Cloud Deploy)'],
+    items: [
+      'Neo4j (Graph DB)',
+      'NumPy / Pandas',
+      'Aspen Plus',
+      'MATLAB',
+      'Docker / Compose',
+      'Git',
+      'Railway (Cloud Deploy)',
+    ],
   },
 ];
 
@@ -194,12 +220,49 @@ export const languages = [
 ];
 
 export const patent = {
-  number: 'Korean Patent · 10-2025-0006400 · Jan 2025',
+  number: 'Korean Patent Application · 10-2025-0006400 · Filed Jan 15, 2025 · Co-inventor',
   title:
-    'Chemical Safety Guidelines Question Answering Based on Knowledge Graph–Retrieval Augmented Generation (RAG) Service System and Its Operation Method',
+    'Chemical Safety Guideline Question-Answering AI Service System Based on Knowledge Graph–Retrieval Augmented Generation, and Its Operating Method',
   description:
-    'A novel system combining knowledge graph technology with retrieval-augmented generation (RAG) to enable accurate, automated question-answering over chemical safety design guidelines. Leverages LLM-Cypher querying for structured reasoning and validation over safety engineering knowledge bases.',
+    'Preserves the hierarchy of safety guidelines (title, scope, body, sub-clauses) as a Neo4j knowledge graph; an LLM turns questions into Cypher queries that retrieve directly and multi-hop connected clauses, so answers cite the exact conditions and exceptions engineers need.',
 };
+
+export type Publication = {
+  kind: 'Journal' | 'Conference';
+  title: string;
+  venue: string;
+  date: string;
+  authorship: string;
+  award?: string;
+  href?: string;
+};
+
+export const publications: Publication[] = [
+  {
+    kind: 'Journal',
+    title:
+      'Sustainable hydrogen production from biogas under operational variability: Feed forecasting with a rolling horizon scheduling strategy',
+    venue: 'Journal of Cleaner Production (Elsevier, SCIE) · Vol. 554, 148139',
+    date: 'Apr 2026',
+    authorship: 'Co-author (3 / 4)',
+    href: 'https://doi.org/10.1016/j.jclepro.2026.148139',
+  },
+  {
+    kind: 'Conference',
+    title: 'Extrapolation Error Quantification for the Discovery of Optimal Experimental Conditions',
+    venue: '2024 AIChE Annual Meeting · Poster',
+    date: 'Oct 2024',
+    authorship: 'First author (1 / 7)',
+  },
+  {
+    kind: 'Conference',
+    title: 'Investment risk management of hydrogen production process design via parameter uncertainty quantification',
+    venue: 'ASCON-IEEChE 2023 · Oral',
+    date: 'Nov 2023',
+    authorship: 'First author',
+    award: 'Best Paper Award',
+  },
+];
 
 export type Repo = {
   name: string;
@@ -234,10 +297,10 @@ export const repos: Repo[] = [
 
 export const education = [
   {
-    period: 'Mar 2023 – Present',
-    degree: 'M.S / Ph.D in Chemical Engineering',
+    period: 'Since Mar 2023',
+    degree: 'Integrated M.S./Ph.D. Program in Chemical Engineering (Coursework Completed)',
     school: 'Sungkyunkwan University — Suwon, Korea',
-    detail: 'GPA: 4.1 / 4.5 · Research focus: AI for process safety & industrial optimization',
+    detail: 'GPA: 4.1 / 4.5 · Intelligent Process Systems Lab · AI for process safety & industrial optimization',
   },
   {
     period: 'Mar 2017 – Feb 2023',

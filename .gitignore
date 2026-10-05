@@ -12,3 +12,6 @@ Thumbs.db
 # Local env files
 .env
 .env.local
+
+# Local job-application source material — never commit
+취준/

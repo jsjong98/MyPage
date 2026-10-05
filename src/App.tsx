@@ -5,10 +5,10 @@ import {Section} from '@astryxdesign/core/Section';
 import {HStack, VStack} from '@astryxdesign/core/Stack';
 import {Text} from '@astryxdesign/core/Text';
 import {TopNav, TopNavHeading, TopNavItem} from '@astryxdesign/core/TopNav';
-import {Briefcase, GitBranch, GraduationCap, Landmark, Languages as LanguagesIcon, MapPin} from 'lucide-react';
+import {Award, BookOpen, Briefcase, GitBranch, GraduationCap, Landmark, Languages as LanguagesIcon, MapPin} from 'lucide-react';
 import {Fragment} from 'react';
 
-import {contact, education, languages, patent} from './data';
+import {contact, education, languages, patent, publications} from './data';
 import {Contact} from './sections/Contact';
 import {GitHubSection} from './sections/GitHubSection';
 import {Hero} from './sections/Hero';
@@ -28,6 +28,7 @@ export function App() {
             <HStack gap={1} vAlign="center">
               <TopNavItem label="Experience" href="#experience" />
               <TopNavItem label="Projects" href="#projects" />
+              <TopNavItem label="Publications" href="#publications" />
               <TopNavItem label="Skills" href="#skills" />
               <TopNavItem label="GitHub" href="#github" />
               <TopNavItem label="Contact" href="#contact" />
@@ -48,8 +49,8 @@ export function App() {
 
         <PageSection
           id="research"
-          title="Research Projects"
-          subtitle="Independent research projects conducted in collaboration with industry partners and government institutions.">
+          title="Research & Activities"
+          subtitle="Graduate research with industry partners and government R&D — turning predictions, models and guidelines into decisions engineers can act on.">
           <Timeline entries="research" />
         </PageSection>
 
@@ -82,9 +83,52 @@ export function App() {
         </PageSection>
 
         <PageSection
+          id="publications"
+          title="Publications & Presentations"
+          subtitle="Peer-reviewed journal work and conference presentations from graduate research.">
+          <VStack>
+            {publications.map((pub, i) => (
+              <Fragment key={pub.title}>
+                {i > 0 && <Divider />}
+                <Item
+                  startContent={pub.kind === 'Journal' ? <BookOpen size={18} aria-hidden /> : <Award size={18} aria-hidden />}
+                  align="start"
+                  label={
+                    <Text weight="medium" textWrap="pretty">
+                      {pub.href ? (
+                        <a href={pub.href} target="_blank" rel="noopener noreferrer">
+                          {pub.title}
+                        </a>
+                      ) : (
+                        pub.title
+                      )}
+                    </Text>
+                  }
+                  description={
+                    <VStack gap={0.5}>
+                      <Text type="body" color="secondary">
+                        {pub.venue}
+                      </Text>
+                      <Text type="supporting">{pub.authorship}</Text>
+                    </VStack>
+                  }
+                  endContent={
+                    <VStack gap={1} hAlign="end">
+                      <Text type="supporting">{pub.date}</Text>
+                      {pub.award && <Badge variant="info" label={pub.award} />}
+                    </VStack>
+                  }
+                  density="spacious"
+                />
+              </Fragment>
+            ))}
+          </VStack>
+        </PageSection>
+
+        <PageSection
           id="patents"
           title="Patents"
-          subtitle="Registered intellectual property at the intersection of AI and safety engineering.">
+          subtitle="Patent application at the intersection of AI and safety engineering.">
           <Item
             startContent={<Landmark size={18} aria-hidden />}
             align="start"

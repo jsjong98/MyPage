@@ -27,10 +27,11 @@ export function Hero() {
             </Text>
           </VStack>
           <Text type="body" color="secondary" as="p" textWrap="pretty">
-            AI researcher specializing in <Text weight="semibold">Trustworthy AI</Text>,{' '}
-            <Text weight="semibold">Agentic AI systems</Text>, and <Text weight="semibold">eXplainable AI</Text>.
-            Bridging cutting-edge research with real-world business impact across consulting, petrochemicals, and
-            industrial AI.
+            AI engineer with a chemical-engineering research background, focused on making AI outputs usable for real
+            decisions — <Text weight="semibold">Agentic AI</Text> verified by{' '}
+            <Text weight="semibold">mathematical optimization</Text>, <Text weight="semibold">knowledge-graph RAG</Text>{' '}
+            that cites its sources, and forecasts turned into procurement and production plans across refining,
+            petrochemicals, manufacturing and consulting.
           </Text>
           <HStack gap={2} wrap="wrap">
             <Button variant="primary" label="Get in touch" onClick={() => scrollTo('contact')} />
