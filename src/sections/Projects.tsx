@@ -1,42 +1,23 @@
-import {Card} from '@astryxdesign/core/Card';
-import {Grid} from '@astryxdesign/core/Grid';
-import {Heading} from '@astryxdesign/core/Heading';
-import {Link} from '@astryxdesign/core/Link';
-import {HStack, StackItem, VStack} from '@astryxdesign/core/Stack';
-import {Text} from '@astryxdesign/core/Text';
-import {Token} from '@astryxdesign/core/Token';
-
+import {Bot, ChartNoAxesCombined, Network, ScanLine, Settings2, Workflow} from 'lucide-react';
+import {ExternalLink, TagList} from '../components/Primitives';
 import {useContent} from '../content/context';
+const icons = [Workflow, Bot, ScanLine, Settings2, ChartNoAxesCombined, Network];
 
 export function Projects() {
   const {projects, projectLinkLabel} = useContent();
   return (
-    <Grid columns={{minWidth: 300, max: 3}} gap={3}>
-      {projects.map(project => (
-        <Card key={project.name} padding={4}>
-          <VStack gap={2} height="100%">
-            <Text type="supporting" color="accent">
-              {project.context}
-            </Text>
-            <Heading level={3}>{project.name}</Heading>
-            <StackItem size="fill">
-              <Text type="body" color="secondary" as="p" textWrap="pretty">
-                {project.description}
-              </Text>
-            </StackItem>
-            <HStack gap={1} wrap="wrap">
-              {project.tags.map(tag => (
-                <Token key={tag} size="sm" label={tag} />
-              ))}
-            </HStack>
-            {project.href && (
-              <Link href={project.href} isExternalLink isStandalone>
-                {projectLinkLabel}
-              </Link>
-            )}
-          </VStack>
-        </Card>
-      ))}
-    </Grid>
+    <div className="project-grid">
+      {projects.map((project, index) => {
+        const Icon = icons[index % icons.length];
+        return (
+          <article className="project-card" key={project.name}>
+            <div className="project-topline"><span className="project-icon"><Icon size={24} strokeWidth={1.6} aria-hidden="true" /></span><span className="project-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span></div>
+            <p className="eyebrow">{project.context}</p><h3>{project.name}</h3>
+            <p className="project-description">{project.description}</p><TagList items={project.tags} />
+            {project.href && <ExternalLink href={project.href} className="project-link">{projectLinkLabel}<span className="sr-only"> - {project.name}</span></ExternalLink>}
+          </article>
+        );
+      })}
+    </div>
   );
 }

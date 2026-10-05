@@ -1,16 +1,8 @@
-import {Badge} from '@astryxdesign/core/Badge';
-import {Divider} from '@astryxdesign/core/Divider';
-import {Item} from '@astryxdesign/core/Item';
-import {Section} from '@astryxdesign/core/Section';
-import {SegmentedControl, SegmentedControlItem} from '@astryxdesign/core/SegmentedControl';
-import {HStack, VStack} from '@astryxdesign/core/Stack';
-import {Text} from '@astryxdesign/core/Text';
-import {TopNav, TopNavHeading, TopNavItem} from '@astryxdesign/core/TopNav';
-import {Award, BookOpen, Briefcase, GitBranch, GraduationCap, Landmark, Languages as LanguagesIcon, MapPin} from 'lucide-react';
-import {Fragment} from 'react';
-
+import {ArrowUp, Award, BookOpen, GraduationCap, Languages, Landmark} from 'lucide-react';
+import {useLayoutEffect} from 'react';
+import {Header} from './components/Header';
+import {ExternalLink} from './components/Primitives';
 import {useContent} from './content/context';
-import type {Locale} from './content/types';
 import {Contact} from './sections/Contact';
 import {GitHubSection} from './sections/GitHubSection';
 import {Hero} from './sections/Hero';
@@ -19,213 +11,46 @@ import {Projects} from './sections/Projects';
 import {Skills} from './sections/Skills';
 import {Timeline} from './sections/Timeline';
 
-// Each locale is its own static page (/MyPage/EN/, /MyPage/KR/); switching
-// keeps the current section anchor.
-function switchLocale(locale: string) {
-  window.location.href = `${import.meta.env.BASE_URL}${locale}/${window.location.hash}`;
-}
-
 export function App() {
-  const {
-    locale,
-    name,
-    nav,
-    sections,
-    footer,
-    languages,
-    publications,
-    patent,
-    education,
-    contact,
-  } = useContent();
+  const {sections, footer, languages, publications, patent, education, nav} = useContent();
+  useLayoutEffect(() => {
+    // Locale pages mount client-side, after the browser's initial anchor lookup.
+    // Restore the section once its DOM exists, without a page-load animation.
+    const id = window.location.hash.slice(1);
+    if (id) document.getElementById(id)?.scrollIntoView({behavior: 'instant', block: 'start'});
+  }, []);
   return (
     <>
-      <header className="site-header">
-        <TopNav
-          label={nav.label}
-          heading={<TopNavHeading heading={name} headingHref="#top" />}
-          endContent={
-            <HStack gap={1} vAlign="center">
-              <TopNavItem label={nav.experience} href="#experience" />
-              <TopNavItem label={nav.projects} href="#projects" />
-              <TopNavItem label={nav.publications} href="#publications" />
-              <TopNavItem label={nav.skills} href="#skills" />
-              <TopNavItem label={nav.github} href="#github" />
-              <TopNavItem label={nav.contact} href="#contact" />
-              <SegmentedControl
-                label={nav.languageSwitch}
-                size="sm"
-                value={locale}
-                onChange={value => value !== locale && switchLocale(value as Locale)}>
-                <SegmentedControlItem value="EN" label="EN" />
-                <SegmentedControlItem value="KR" label="KR" />
-              </SegmentedControl>
-            </HStack>
-          }
-        />
-      </header>
-
-      <main id="top" className="page-column">
+      <Header />
+      <main id="main" className="page-column" tabIndex={-1}>
         <Hero />
-
-        <PageSection
-          id="experience"
-          title={sections.experience.title}
-          subtitle={sections.experience.subtitle}>
-          <Timeline entries="experience" />
+        <PageSection id="experience" number="01" {...sections.experience}><Timeline entries="experience" /></PageSection>
+        <PageSection id="projects" number="02" {...sections.projects}><Projects /></PageSection>
+        <PageSection id="research" number="03" {...sections.research}><Timeline entries="research" /></PageSection>
+        <PageSection id="publications" number="04" {...sections.publications}>
+          <div className="record-list">{publications.map(pub => (
+            <article className="record-row" key={pub.title}>
+              <span className="record-icon">{pub.kind === 'Journal' ? <BookOpen size={21} aria-hidden="true" /> : <Award size={21} aria-hidden="true" />}</span>
+              <div className="record-content"><p className="record-meta">{pub.date}<span aria-hidden="true"> · </span>{pub.authorship}</p><h3 lang="en">{pub.href ? <ExternalLink href={pub.href}>{pub.title}</ExternalLink> : pub.title}</h3><p>{pub.venue}</p>{pub.award && <span className="badge badge-accent">{pub.award}</span>}</div>
+            </article>
+          ))}</div>
         </PageSection>
-
-        <PageSection
-          id="research"
-          title={sections.research.title}
-          subtitle={sections.research.subtitle}>
-          <Timeline entries="research" />
+        <PageSection id="patents" number="05" {...sections.patents}>
+          <article className="patent-card"><Landmark className="record-icon" size={24} aria-hidden="true" /><div><p className="record-meta">{patent.number}</p><h3>{patent.title}</h3><p>{patent.description}</p></div></article>
         </PageSection>
-
-        <PageSection
-          id="projects"
-          title={sections.projects.title}
-          subtitle={sections.projects.subtitle}>
-          <Projects />
-        </PageSection>
-
-        <PageSection id="skills" title={sections.skills.title} subtitle={sections.skills.subtitle}>
-          <Skills />
-        </PageSection>
-
-        <PageSection id="languages" title={sections.languages.title}>
-          <VStack>
-            {languages.map((lang, i) => (
-              <Fragment key={lang.name}>
-                {i > 0 && <Divider />}
-                <Item
-                  startContent={<LanguagesIcon size={18} aria-hidden />}
-                  label={lang.name}
-                  description={lang.description}
-                  endContent={<Badge variant="blue" label={lang.level} />}
-                  density="spacious"
-                />
-              </Fragment>
-            ))}
-          </VStack>
-        </PageSection>
-
-        <PageSection
-          id="publications"
-          title={sections.publications.title}
-          subtitle={sections.publications.subtitle}>
-          <VStack>
-            {publications.map((pub, i) => (
-              <Fragment key={pub.title}>
-                {i > 0 && <Divider />}
-                <Item
-                  startContent={pub.kind === 'Journal' ? <BookOpen size={18} aria-hidden /> : <Award size={18} aria-hidden />}
-                  align="start"
-                  label={
-                    <Text weight="medium" textWrap="pretty">
-                      {pub.href ? (
-                        <a href={pub.href} target="_blank" rel="noopener noreferrer">
-                          {pub.title}
-                        </a>
-                      ) : (
-                        pub.title
-                      )}
-                    </Text>
-                  }
-                  description={
-                    <VStack gap={0.5}>
-                      <Text type="body" color="secondary">
-                        {pub.venue}
-                      </Text>
-                      <Text type="supporting">{pub.authorship}</Text>
-                    </VStack>
-                  }
-                  endContent={
-                    <VStack gap={1} hAlign="end">
-                      <Text type="supporting">{pub.date}</Text>
-                      {pub.award && <Badge variant="info" label={pub.award} />}
-                    </VStack>
-                  }
-                  density="spacious"
-                />
-              </Fragment>
-            ))}
-          </VStack>
-        </PageSection>
-
-        <PageSection
-          id="patents"
-          title={sections.patents.title}
-          subtitle={sections.patents.subtitle}>
-          <Item
-            startContent={<Landmark size={18} aria-hidden />}
-            align="start"
-            label={
-              <Text weight="medium" textWrap="pretty">
-                {patent.title}
-              </Text>
-            }
-            description={
-              <VStack gap={1}>
-                <Text type="supporting">{patent.number}</Text>
-                <Text type="body" color="secondary">
-                  {patent.description}
-                </Text>
-              </VStack>
-            }
-            density="spacious"
-          />
-        </PageSection>
-
+        <PageSection id="skills" number="06" {...sections.skills}><Skills /></PageSection>
         <GitHubSection />
-
-        <PageSection id="education" title={sections.education.title}>
-          <VStack>
-            {education.map((edu, i) => (
-              <Fragment key={edu.degree}>
-                {i > 0 && <Divider />}
-                <Item
-                  startContent={<GraduationCap size={18} aria-hidden />}
-                  align="start"
-                  label={edu.degree}
-                  description={
-                    <VStack gap={0.5}>
-                      <Text type="body" color="secondary">
-                        {edu.school}
-                      </Text>
-                      <Text type="supporting">{edu.detail}</Text>
-                    </VStack>
-                  }
-                  endContent={<Text type="supporting">{edu.period}</Text>}
-                  density="spacious"
-                />
-              </Fragment>
-            ))}
-          </VStack>
-        </PageSection>
-
+        <div className="background-grid">
+          <PageSection id="education" number="08" {...sections.education}>
+            <div className="record-list">{education.map(edu => <article className="record-row" key={edu.degree}><GraduationCap size={21} className="record-icon" aria-hidden="true" /><div className="record-content"><p className="record-meta">{edu.period}</p><h3>{edu.degree}</h3><p className="school-name">{edu.school}</p><p>{edu.detail}</p></div></article>)}</div>
+          </PageSection>
+          <PageSection id="languages" number="09" {...sections.languages}>
+            <div className="record-list">{languages.map(lang => <article className="record-row" key={lang.name}><Languages size={21} className="record-icon" aria-hidden="true" /><div className="record-content"><div className="language-heading"><h3>{lang.name}</h3><span className="badge">{lang.level}</span></div><p>{lang.description}</p></div></article>)}</div>
+          </PageSection>
+        </div>
         <Contact />
       </main>
-
-      <footer className="site-footer">
-        <Section variant="transparent" paddingBlock={5}>
-          <HStack justify="between" vAlign="center" wrap="wrap" gap={2}>
-            <Text type="supporting">{footer.copyright}</Text>
-            <HStack gap={2} vAlign="center">
-              <a href={contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="footer-icon">
-                <GitBranch size={16} aria-hidden />
-              </a>
-              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="footer-icon">
-                <Briefcase size={16} aria-hidden />
-              </a>
-              <HStack gap={0.5} vAlign="center">
-                <MapPin size={14} aria-hidden />
-                <Text type="supporting">{footer.region}</Text>
-              </HStack>
-            </HStack>
-          </HStack>
-        </Section>
-      </footer>
+      <footer className="site-footer"><div className="footer-inner"><p>{footer.copyright}</p><a href="#top">{nav.backToTop}<ArrowUp size={15} aria-hidden="true" /></a></div></footer>
     </>
   );
 }

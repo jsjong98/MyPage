@@ -1,24 +1,11 @@
-import {Grid} from '@astryxdesign/core/Grid';
-import {Heading} from '@astryxdesign/core/Heading';
-import {HStack, VStack} from '@astryxdesign/core/Stack';
-import {Token} from '@astryxdesign/core/Token';
-
+import {Braces, BrainCircuit, Database, Layers3} from 'lucide-react';
+import {TagList} from '../components/Primitives';
 import {useContent} from '../content/context';
-
+const icons = [BrainCircuit, Layers3, Braces, Database];
 export function Skills() {
   const {skillGroups} = useContent();
-  return (
-    <Grid columns={{minWidth: 280, max: 2}} gap={5}>
-      {skillGroups.map(group => (
-        <VStack key={group.label} gap={2}>
-          <Heading level={4}>{group.label}</Heading>
-          <HStack gap={1} wrap="wrap">
-            {group.items.map(item => (
-              <Token key={item} color={group.color} label={item} />
-            ))}
-          </HStack>
-        </VStack>
-      ))}
-    </Grid>
-  );
+  return <div className="skills-grid">{skillGroups.map((group, index) => {
+    const Icon = icons[index % icons.length];
+    return <article className="skill-group" key={group.label}><h3><Icon size={19} aria-hidden="true" />{group.label}</h3><TagList items={group.items} /></article>;
+  })}</div>;
 }

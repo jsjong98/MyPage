@@ -1,43 +1,26 @@
-import {Button} from '@astryxdesign/core/Button';
-import {Heading} from '@astryxdesign/core/Heading';
-import {HStack, StackItem, VStack} from '@astryxdesign/core/Stack';
-import {Text} from '@astryxdesign/core/Text';
-import {Token} from '@astryxdesign/core/Token';
-
+import {ArrowDown, ArrowRight, MapPin} from 'lucide-react';
 import profileUrl from '../assets/profile.jpg';
 import {useContent} from '../content/context';
 
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({behavior: 'smooth'});
-}
-
 export function Hero() {
-  const {name, hero} = useContent();
+  const {name, hero, contact} = useContent();
   return (
-    <HStack gap={8} vAlign="center" paddingBlock={10} wrap="wrap">
-      <StackItem size="fill">
-        <VStack gap={4} maxWidth={560}>
-          <HStack>
-            <Token color="cyan" label={hero.status} />
-          </HStack>
-          <VStack gap={2}>
-            <Heading level={1} type="display-2">
-              {name}
-            </Heading>
-            <Text type="large" color="secondary">
-              {hero.role}
-            </Text>
-          </VStack>
-          <Text type="body" color="secondary" as="p" textWrap="pretty">
-            {hero.intro}
-          </Text>
-          <HStack gap={2} wrap="wrap">
-            <Button variant="primary" label={hero.contactCta} onClick={() => scrollTo('contact')} />
-            <Button variant="secondary" label={hero.projectsCta} onClick={() => scrollTo('projects')} />
-          </HStack>
-        </VStack>
-      </StackItem>
-      <img src={profileUrl} alt={name} className="hero-photo" />
-    </HStack>
+    <section className="hero" id="top" tabIndex={-1} aria-labelledby="hero-name">
+      <div className="hero-copy">
+        <p className="availability"><span aria-hidden="true" />{hero.status}</p>
+        <h1 id="hero-name">{name}<span className="name-period" aria-hidden="true">.</span></h1>
+        <p className="hero-role">{hero.role}</p>
+        <p className="hero-headline">{hero.headline}</p>
+        <p className="hero-intro">{hero.intro}</p>
+        <div className="hero-actions">
+          <a className="button button-primary" href="#projects">{hero.projectsCta}<ArrowDown size={17} aria-hidden="true" /></a>
+          <a className="button button-secondary" href="#contact">{hero.contactCta}<ArrowRight size={17} aria-hidden="true" /></a>
+        </div>
+      </div>
+      <figure className="hero-portrait">
+        <div className="portrait-frame"><img src={profileUrl} alt={name} className="hero-photo" width="280" height="350" fetchPriority="high" /></div>
+        <figcaption><MapPin size={14} aria-hidden="true" />{contact.location}</figcaption>
+      </figure>
+    </section>
   );
 }

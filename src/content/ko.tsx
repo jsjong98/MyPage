@@ -1,5 +1,3 @@
-import {Text} from '@astryxdesign/core/Text';
-
 import {en} from './en';
 import type {Content} from './types';
 
@@ -14,16 +12,21 @@ export const ko: Content = {
     skills: '기술',
     github: 'GitHub',
     contact: '연락처',
-    languageSwitch: '언어',
+    languageSwitch: '언어 선택',
+    skipToContent: '본문으로 바로 가기',
+    openMenu: '메뉴 열기',
+    closeMenu: '메뉴 닫기',
+    backToTop: '맨 위로',
   },
   hero: {
-    status: '새로운 기회에 열려 있습니다',
+    status: '새로운 협업과 기회를 기다립니다',
     role: 'AI 연구원 · 엔지니어',
+    headline: 'AI를 실제 의사결정으로 연결합니다.',
     intro: (
       <>
-        화학공학 연구 배경을 가진 AI 엔지니어로, AI의 결과를 실제 의사결정에 쓸 수 있게 만드는 일에 집중합니다.{' '}
-        <Text weight="semibold">수리최적화</Text>로 실행 가능성을 검증하는 <Text weight="semibold">에이전틱 AI</Text>,
-        근거 조항을 제시하는 <Text weight="semibold">지식그래프 RAG</Text>, 구매·생산계획으로 이어지는 예측 모델을
+        화학공학 연구를 바탕으로, 산업 현장에서 활용할 수 있는 AI를 만듭니다.{' '}
+        <strong>수리 최적화</strong>로 실행 가능성을 검증하는 <strong>에이전틱 AI</strong>,
+        근거 조항을 제시하는 <strong>지식그래프 RAG</strong>, 구매·생산계획으로 이어지는 예측 모델을
         정유·석유화학·제조·컨설팅 현장에서 구현해 왔습니다.
       </>
     ),
@@ -33,44 +36,48 @@ export const ko: Content = {
   sections: {
     experience: {
       title: '경력',
-      subtitle: '연구실에서 컨설팅·산업 현장까지 — 여러 산업에서 AI 전환을 실행해 왔습니다.',
+      subtitle: '연구와 컨설팅을 거쳐 산업 현장에 AI를 적용해 왔습니다.',
     },
     research: {
       title: '연구 및 활동',
-      subtitle: '산학·국책 과제와 창업 활동 — 예측과 모델, 지침을 엔지니어가 실제로 쓸 수 있는 판단 근거로 바꾸는 연구입니다.',
+      subtitle: '산학협력, 국가 연구개발 과제, 창업 활동을 통해 예측 모델과 안전 지침을 현장의 판단 근거로 연결했습니다.',
     },
     projects: {
       title: '주요 프로젝트',
-      subtitle: '에이전틱 AI, 최적화, 지식그래프, 의사결정 지원에 걸친 대표 작업입니다.',
+      subtitle: 'AI 에이전트부터 수리 최적화까지, 산업 현장의 의사결정을 지원하는 프로젝트입니다.',
     },
     publications: {
-      title: '논문 및 학술발표',
-      subtitle: '대학원 연구에서 나온 학술지 논문과 학술대회 발표입니다.',
+      title: '논문 및 학술 발표',
+      subtitle: '대학원 연구를 바탕으로 발표한 학술지 논문과 학술대회 발표입니다.',
     },
-    skills: {title: '기술 역량', subtitle: '분야, 구현, 도구별로 정리했습니다.'},
-    languages: {title: '언어'},
-    patents: {title: '특허', subtitle: 'AI와 안전공학을 결합한 특허 출원입니다.'},
-    github: {title: 'GitHub 활동', subtitle: '응용 AI 연구를 보여 주는 공개 저장소입니다.'},
+    skills: {title: '기술 역량', subtitle: '문제를 정의하고, 모델을 구현하고, 서비스로 연결하는 기술입니다.'},
+    languages: {title: '언어 역량'},
+    patents: {title: '특허 출원', subtitle: 'AI와 안전공학을 결합한 연구 성과입니다.'},
+    github: {title: 'GitHub 활동', subtitle: '직접 구현한 AI 시스템과 공개 저장소를 살펴보세요.'},
     education: {title: '학력'},
   },
   github: {
     loadError: '기여 데이터를 불러오지 못했습니다.',
     loading: '기여 내역을 불러오는 중…',
-    caption: 'github.com/jsjong98 — 기여 활동',
-    total: count => `최근 1년간 ${count.toLocaleString()}회 기여`,
-    cellTitle: (count, date) => `${date}: ${count}회 기여`,
+    caption: 'github.com/jsjong98 - 기여 활동',
+    total: count => `최근 1년간 ${count.toLocaleString('ko-KR')}회 기여`,
+    cellTitle: (count, date) => `${new Intl.DateTimeFormat('ko-KR', {dateStyle: 'long', timeZone: 'UTC'}).format(new Date(date))}: ${count.toLocaleString('ko-KR')}회 기여`,
     calendarLabel: '최근 1년간 GitHub 기여 달력',
     less: '적음',
     more: '많음',
+    profileLink: 'GitHub 프로필 보기',
+    retry: '다시 불러오기',
   },
   projectLinkLabel: 'GitHub에서 보기',
+  externalLinkHint: ' (새 탭에서 열림)',
+  timelineDetails: '상세 내용 펼치기 또는 접기',
   contactCopy: {
-    heading: '함께 의미 있는 결과를 만들어 가고 싶습니다.',
+    heading: '함께 풀고 싶은 문제가 있나요?',
     body: '연구 협업, 컨설팅, AI 엔지니어링·프로덕트 직무 제안을 환영합니다. 한국에 거주하며 해외 협업도 가능합니다.',
-    locationLabel: '위치',
+    locationLabel: '거주지',
   },
   footer: {
-    copyright: '© 2026 오종환 — AI 연구원 · 엔지니어',
+    copyright: '© 2026 오종환 - AI 연구원 · 엔지니어',
     region: '대한민국',
   },
   experience: [
@@ -81,10 +88,10 @@ export const ko: Content = {
       role: 'AI 엔지니어',
       badge: {label: '재직 중', variant: 'info'},
       points: [
-        'Refinery Company — 생산계획 재조정 PoC(3인 팀): 전체 처리 절차, 부족량 계산 모델, 현장 제약 검사 규칙을 담당 — 사건 해석 → 영향 판정 → 부족량 계산 → 계획 재조정 → 후속 공정 검증 → 비교 보고',
+        '정유사 - 생산계획 재조정 PoC(3인 팀): 전체 처리 흐름, 부족량 계산 모델, 현장 제약 검증 규칙을 담당 - 이벤트 해석 → 영향 평가 → 부족량 계산 → 계획 재조정 → 후속 공정 검증 → 비교 보고',
         '고객사의 원유 배합·후속 공정 두 시스템의 모델 파일에서 제약을 추출하고 현장 설비 운용 규칙을 더해 20종의 검사 규칙으로 코드화, AI가 제안한 조정안을 먼저 걸러낸 뒤 HiGHS 기반 선형계획으로 원유 그룹별 부족량을 재계산',
-        '조건을 어긴 제안의 반려 사유를 다음 시도의 입력으로 넣고 조정안마다 시도 이력과 이익 변화를 첨부 — 대표 시나리오에서 팀은 부족 물량이 없는 조정안을 도출해 고객사 중간보고에 공유',
-        'Refinery Company — 설비 온톨로지 과제(진행 중): 장치·기계·계기·전기기술팀 현업 인터뷰로 요구사항을 정리하고 과제를 정의, 설비 자료와 정비 이력을 연결해 트러블슈팅을 돕는 온톨로지를 설계 중 (챗봇 개발은 착수 전)',
+        '제약 조건을 위반한 제안의 반려 사유를 다음 시도에 반영하고 조정안마다 시도 이력과 이익 변화를 첨부 - 대표 시나리오에서 팀은 부족 물량이 없는 조정안을 도출해 고객사 중간보고에서 공유',
+        '정유사 - 설비 온톨로지 과제(진행 중): 장치·기계·계기·전기기술팀 현업 인터뷰로 요구사항을 정리하고 과제를 정의, 설비 자료와 정비 이력을 연결해 고장 원인 분석을 돕는 온톨로지를 설계 중 (챗봇 개발은 착수 전)',
       ],
     },
     {
@@ -93,9 +100,9 @@ export const ko: Content = {
       location: '서울',
       role: '리서치 어시스턴트',
       points: [
-        '6개 계열사 HR 업무 약 4,000건의 AI 적용 가능성 검토 과제에서 판단 기준 초안을 작성하고 AI 분류기를 구현 — 법·규정상 제약, 결정·승인 책임, 사람 간 상호작용 필요성을 순서대로 확인하고, 사람이 맡아야 한다고 판정되면 뒤 단계는 생략',
-        '팀과 함께 세부 작업 단위로 분류를 검토 — 예: 자회사 의견 수렴을 AI의 의견 요청 메일 발송과 사람의 분석으로 역할 분리',
-        '67개 우선 과제의 평가와 단계별 로드맵 작성에 참여, 착수 순서에 데이터 준비도를 반영하는 기준과 구축·도입 비교, 시범 조직의 역할·성과지표·점검 기준을 제안',
+        '6개 계열사의 인사(HR) 업무 약 4,000건의 AI 적용 가능성 검토 과제에서 판단 기준 초안을 작성하고 AI 분류기를 구현 - 법·규정상 제약, 결정·승인 책임, 사람 간 상호작용 필요성을 순서대로 확인하고, 사람이 맡아야 한다고 판정되면 이후 단계는 생략',
+        '팀과 함께 세부 작업 단위로 분류를 검토 - 예: 자회사 의견 수렴을 AI의 의견 요청 메일 발송과 사람의 분석으로 역할 분리',
+        '67개 우선 과제의 평가와 단계별 로드맵 작성에 참여, 착수 순서에 데이터 준비도를 반영하는 기준과 자체 개발·외부 솔루션 도입 비교, 시범 조직의 역할·성과지표·점검 기준을 제안',
       ],
     },
     {
@@ -105,8 +112,8 @@ export const ko: Content = {
       role: '리서치 애널리스트',
       points: [
         '전자재료 1,000여 제품군의 생산계획 최적화 과제에서 컨설턴트 3명과 협업하며 자료 정리, 최적화 모델 설계·구현, 시나리오 분석을 담당',
-        '생산·영업 인터뷰를 준비·참여하고, 고객 납기는 제약(우선 고객 지연 0일, 그 외 최대 7일)으로, 설비 전환 비가동 시간은 최소화 목표로 모델링하며 공장 간 물량 이동도 반영',
-        '제약 조건별 시나리오를 생산·영업 공동 검토회의에 제시 — 기존 계획 대비 설비 전환 비가동 시간이 20% 적은 계획안을 도출해 공동 검토 기준으로 활용',
+        '생산·영업 인터뷰를 준비·참여하고, 고객 납기는 제약(우선 고객 지연 0일, 그 외 최대 7일)으로, 설비 전환에 따른 비가동 시간은 최소화 목표로 모델링하며 공장 간 물량 이동도 반영',
+        '제약 조건별 시나리오를 생산·영업 공동 검토회의에 제시 - 기존 계획 대비 설비 전환에 따른 비가동 시간이 20% 적은 계획안을 도출해 공동 검토 기준으로 활용',
       ],
     },
     {
@@ -115,46 +122,47 @@ export const ko: Content = {
       location: '서울',
       role: '리서치 어시스턴트',
       points: [
-        '사내 인력 이탈 예측 과제에서 분석 구조 설계, 모델 개발, 결과 통합을 담당 — IBM HR 데이터(1,470명)를 바탕으로 합성한 가상 직원 자료 사용',
-        '인사정보(XGBoost + SHAP), 행동 변화(Transformer 오토인코더 이상 점수), 조직 관계, 감정·번아웃 텍스트, 외부 채용시장의 5개 분석 모듈로 구성',
-        '전문가 AHP 가중치와 베이지안 최적화 가중치를 절반씩 반영해 저위험·잠재적 위험·고위험 3등급을 산출하는 통합 로직을 구현 — 팀은 사내 AI 경진대회 76개 팀 중 4위',
+        '사내 직원 이탈 예측 과제에서 분석 구조 설계, 모델 개발, 결과 통합을 담당 - IBM HR 데이터(1,470명)를 바탕으로 합성한 가상 직원 자료 사용',
+        '인사 정보(XGBoost + SHAP), 행동 변화(Transformer 오토인코더 이상 점수), 조직 관계, 감정·번아웃 텍스트, 외부 채용 시장의 5개 분석 모듈로 구성',
+        '전문가 AHP 가중치와 베이지안 최적화 가중치를 절반씩 반영해 저위험·잠재적 위험·고위험 3등급을 산출하는 통합 로직을 구현 - 팀은 사내 AI 경진대회 76개 팀 중 4위',
       ],
     },
   ],
   research: [
     {
       period: '2024.07 – 2025.06',
-      company: 'Petrochemical Company L',
+      company: '석유화학 기업 L사',
       location: '산학협력',
       role: 'AI 기반 석유화학 생산 플랜트 의사결정 플랫폼 개발',
       badge: {label: '산학', variant: 'neutral'},
       points: [
         '유가·제품가·환율 등 약 80개 시계열에서 유사한 변수를 묶고, 군별로 나프타 가격과 상관이 높은 변수를 골라 단기·장기 예측에 활용',
         '구매 후보 기간에 예측 평균가격이 낮은 순서로 3·2·1점을 부여하고 일별 예측마다 누적하는 판단 방식을 설계, 가격 추이·주요 변수와 함께 도구에 제시',
-        '21개 반월 구매 기간 가상 검증에서 실제 구매가(프리미엄 제외) 대비 평균 0.42%의 절약 가능성을 확인',
+        '보름 단위의 구매 기간 21개에 대한 과거 데이터 검증(백테스트)에서 실제 구매가(프리미엄 제외) 대비 평균 0.42%의 비용 절감 가능성을 확인',
       ],
     },
     {
       period: '2023.03 – 2024.12',
       company: 'KEIT',
       location: '국책과제',
+      // Preserve the original research project title, including its English terms.
       role: '설계오류 자동검증을 위한 Data기반 엔지니어링 Rule Library 기술 개발',
       badge: {label: '국책', variant: 'neutral'},
       points: [
         'KOSHA 238건·OSHA 4건 등 안전지침 242건을 계층적 지식베이스로 구조화하고, 조항의 상위 맥락을 보존하는 Neo4j 지식그래프로 구현',
-        '언어모델이 생성한 Cypher 쿼리로 직접·다단계 연결 조항을 검색하는 KG-RAG 질의응답 흐름을 설계 — 242건 평균 95% 정확도, 특허 출원',
-        '지침 분류 모델 고도화와 전 과정 환경 영향 계산 엔진 개발에도 참여',
+        '언어모델이 생성한 Cypher 쿼리로 직접·다단계 연결 조항을 검색하는 KG-RAG 질의응답 흐름을 설계 - 242건 평균 95% 정확도, 특허 출원',
+        '지침 분류 모델 고도화와 전과정 환경영향 계산 엔진 개발에도 참여',
       ],
     },
     {
       period: '2023.05 – 2023.10',
       company: '성균관대학교 창업지원단',
       location: '수원 · 실험실 창업동아리',
-      role: '회장 · 개발 리드 — ADSP',
+      role: '회장 · 개발 리드 - ADSP',
       badge: {label: '수상', variant: 'neutral'},
       points: [
         '현직 공정설계 엔지니어 인터뷰로 반복 입력·수동 계산 부담을 설계 조건 자동 입력, 경제성 자동 평가, 환경성 평가 요구로 정리',
-        '원료 조건과 목표 물질로 설계 대안을 탐색하고 경제성과 CO₂ 배출량을 파레토 최적화, 전주기평가(LCA)까지 포함한 ADSP 시제품을 구현',
+        '원료 조건과 목표 물질로 설계 대안을 탐색하고 경제성과 CO₂ 배출량을 파레토 최적화, 전과정평가(LCA)까지 포함한 ADSP 시제품을 구현',
         '우수동아리상 수상',
       ],
     },
@@ -162,39 +170,39 @@ export const ko: Content = {
   projects: [
     {
       name: '정유 생산계획 재조정 에이전트 PoC',
-      context: '에이전틱 AI · 최적화 · Refinery Company',
+      context: '에이전틱 AI · 최적화 · 정유사',
       description:
         '원유 입항이 지연되면 AI 에이전트가 생산계획 조정안을 제안하고, 코드화한 현장 규칙 20종이 이를 걸러낸 뒤 HiGHS 기반 선형계획이 원유 그룹별 부족량 해소 여부를 검증합니다. 반려 사유는 다음 시도에 반영되고, 조정안마다 시도 이력과 이익 변화가 함께 제시됩니다.',
-      tags: ['LLM Agent', '선형계획(LP)', 'HiGHS', 'Python'],
+      tags: ['LLM 에이전트', '선형계획(LP)', 'HiGHS', 'Python'],
     },
     {
       name: 'Agentic AI System',
-      context: '다중 모듈 이탈 예측 · PwC',
+      context: '다중 모듈 기반 직원 이탈 예측 · PwC',
       description:
-        '인사정보(XGBoost + SHAP), 행동 이상(Transformer 오토인코더), 관계, 텍스트 감정, 외부 시장의 5개 분석 모듈을 AHP와 베이지안 최적화 가중치로 통합해 3단계 위험 등급을 산출합니다. 사내 AI 경진대회 76개 팀 중 4위.',
+        '인사 정보(XGBoost + SHAP), 행동 이상(Transformer 오토인코더), 관계, 텍스트 감정, 외부 시장의 5개 분석 모듈을 AHP와 베이지안 최적화 가중치로 통합해 3단계 위험 등급을 산출합니다. 사내 AI 경진대회에서 76개 팀 중 4위를 기록했습니다.',
       tags: ['LangGraph', 'XGBoost', 'SHAP', 'Transformer', 'Neo4j', 'React'],
       href: 'https://github.com/jsjong98/Agentic_AI_system',
     },
     {
       name: 'AX Lens System',
-      context: 'HR 업무 분류 · PwC',
+      context: '인사 업무 분류 · PwC',
       description:
-        '6개 계열사 HR 업무 약 4,000건을 3단계 녹아웃 LLM 로직(규정 → 책임 → 상호작용)으로 AI 수행·사람 수행으로 분류하고, 판정마다 근거를 남겨 컨설턴트가 검토할 수 있게 했습니다.',
+        '6개 계열사의 인사(HR) 업무 약 4,000건을 3단계 LLM 판단 절차(규정 → 책임 → 상호작용)로 검토해 AI가 수행할 업무와 사람이 맡을 업무를 분류하고, 판정마다 근거를 남겨 컨설턴트가 검토할 수 있게 했습니다.',
       tags: ['LLM', 'FastAPI', 'Next.js', 'TypeScript'],
       href: 'https://github.com/jsjong98/ax-lens-system',
     },
     {
       name: '생산계획 최적화 모델',
-      context: '오퍼레이션 리서치 · BCG',
+      context: '경영과학 · BCG',
       description:
-        '1,000여 제품군을 대상으로 고객 납기(우선 고객 0일, 그 외 최대 7일)를 제약으로 지키면서 설비 전환 비가동 시간을 최소화하고, 공장 간 물량 이동까지 고려한 계획 모델. 기존 계획 대비 전환 비가동 시간 20% 감소.',
+        '1,000여 제품군을 대상으로 납기 지연 허용 범위(우선 고객 0일, 그 외 최대 7일)를 제약으로 지키면서 설비 전환에 따른 비가동 시간을 최소화하고, 공장 간 물량 이동까지 고려한 계획 모델입니다. 기존 계획 대비 설비 전환에 따른 비가동 시간을 20% 줄인 계획안을 도출했습니다.',
       tags: ['CP-SAT', '혼합정수 모델링', 'OR-Tools', '제조'],
     },
     {
       name: '나프타 가격 예측 플랫폼',
       context: '시계열 · 구매 의사결정',
       description:
-        '약 80개 변수로 나프타 가격을 단기·장기 예측하고, 이를 구매 후보 기간의 3·2·1점 누적 점수로 바꿔 구매 시점 판단을 지원합니다. 21개 기간 가상 검증에서 평균 0.42% 절약 가능성을 확인했습니다.',
+        '약 80개 변수로 나프타 가격을 단기·장기 예측하고, 이를 구매 후보 기간의 3·2·1점 누적 점수로 바꿔 구매 시점 판단을 지원합니다. 21개 구매 기간에 대한 과거 데이터 검증(백테스트)에서 평균 0.42%의 비용 절감 가능성을 확인했습니다.',
       tags: ['시계열', '가격 예측', '변수 선별', '의사결정 지원'],
       href: 'https://github.com/jsjong98/Mopj-project',
     },
@@ -202,7 +210,7 @@ export const ko: Content = {
       name: '안전지침 지식그래프 챗봇',
       context: '지식그래프 · RAG · 특허 출원',
       description:
-        'KOSHA·OSHA 안전지침 242건 기반 KG-RAG 질의응답. 언어모델이 생성한 Cypher 쿼리로 최대 5단계 하위 조항까지 찾아, 기존 모델이 놓친 최소유량배관 설치 예외를 답하는 등 평균 95% 정확도를 보였습니다.',
+        'KOSHA·OSHA 안전 지침 242건을 활용한 지식그래프 기반 검색 증강 생성(KG-RAG) 질의응답 시스템입니다. 언어모델이 생성한 Cypher 쿼리로 최대 5단계 하위 조항까지 찾아, 기존 모델이 놓친 최소 유량 배관의 설치 예외 조건을 제시하는 등 평균 95% 정확도를 보였습니다.',
       tags: ['RAG', 'Neo4j', 'LLM-Cypher', 'NLP'],
     },
   ],
@@ -215,9 +223,9 @@ export const ko: Content = {
         '지식그래프 · RAG',
         '설명 가능한 AI (XAI)',
         '시계열 예측',
-        '수리최적화 (LP / MIP)',
+        '수리 최적화 (LP / MIP)',
         '불확실성 정량화',
-        '자연어처리 (NLP)',
+        '자연어 처리 (NLP)',
       ],
     },
     {
@@ -262,7 +270,7 @@ export const ko: Content = {
     {
       name: '영어',
       level: '유창',
-      description: '비즈니스·학술 영어 — 컨설팅 산출물, 연구 논문, 해외 협업',
+      description: '비즈니스·학술 영어 - 컨설팅 산출물, 연구 논문, 해외 협업',
     },
   ],
   patent: {
@@ -278,7 +286,7 @@ export const ko: Content = {
         'Sustainable hydrogen production from biogas under operational variability: Feed forecasting with a rolling horizon scheduling strategy',
       venue: 'Journal of Cleaner Production (Elsevier, SCIE) · Vol. 554, 148139',
       date: '2026.04',
-      authorship: '공동저자 (3 / 4)',
+      authorship: '공동저자 (전체 4명 중 3번째)',
       href: 'https://doi.org/10.1016/j.jclepro.2026.148139',
     },
     {
@@ -286,13 +294,13 @@ export const ko: Content = {
       title: 'Extrapolation Error Quantification for the Discovery of Optimal Experimental Conditions',
       venue: '2024 AIChE Annual Meeting · 포스터',
       date: '2024.10',
-      authorship: '제1저자 (1 / 7)',
+      authorship: '제1저자 (전체 7명)',
     },
     {
       kind: 'Conference',
       title:
         'Investment risk management of hydrogen production process design via parameter uncertainty quantification',
-      venue: 'ASCON-IEEChE 2023 · 구두발표',
+      venue: 'ASCON-IEEChE 2023 · 구두 발표',
       date: '2023.11',
       authorship: '제1저자',
       award: 'Best Paper Award',
@@ -302,14 +310,14 @@ export const ko: Content = {
     {
       name: 'Agentic_AI_system',
       description:
-        'HR 이탈 예측을 위한 Supervisor + 5개 전문 워커 에이전트(Structura, Cognita, Chronos, Sentio, Agora). React + ReactFlow 대시보드를 포함한 풀스택 구성.',
+        '직원 이탈을 예측하는 총괄 에이전트와 5개 전문 에이전트(Structura, Cognita, Chronos, Sentio, Agora)로 구성했습니다. React·ReactFlow 대시보드를 포함합니다.',
       meta: ['Python 42.9%', 'JS/HTML 56%'],
       href: 'https://github.com/jsjong98/Agentic_AI_system',
     },
     {
       name: 'ax-lens-system',
       description:
-        'HR 업무의 AI·사람 수행 분류 풀스택 시스템. FastAPI 백엔드 + Next.js 15 프론트엔드, 3단계 녹아웃 LLM 분류 로직.',
+        '인사 업무를 AI가 수행할 업무와 사람이 맡을 업무로 분류하는 시스템입니다. FastAPI 백엔드와 Next.js 15 프론트엔드, 3단계 LLM 판단 절차로 구성했습니다.',
       meta: ['TypeScript 48.1%', 'Python 44.1%'],
       href: 'https://github.com/jsjong98/ax-lens-system',
     },
@@ -322,15 +330,15 @@ export const ko: Content = {
   ],
   education: [
     {
-      period: '2023.03 –',
-      degree: '화학공학과 석박사통합과정 (수료)',
-      school: '성균관대학교 — 수원',
+      period: '2023.03 입학',
+      degree: '화학공학과 석·박사 통합과정 (수료)',
+      school: '성균관대학교 - 수원',
       detail: '평점 4.1 / 4.5 · 지능형공정시스템연구실 · 공정 안전과 산업 최적화를 위한 AI',
     },
     {
       period: '2017.03 – 2023.02',
       degree: '응용화학공학과 학사',
-      school: '충남대학교 — 대전',
+      school: '충남대학교 - 대전',
       detail: '공정 시스템과 화학의 기초',
     },
   ],

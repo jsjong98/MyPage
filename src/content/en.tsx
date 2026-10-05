@@ -1,5 +1,3 @@
-import {Text} from '@astryxdesign/core/Text';
-
 import type {Content} from './types';
 
 export const en: Content = {
@@ -13,16 +11,20 @@ export const en: Content = {
     skills: 'Skills',
     github: 'GitHub',
     contact: 'Contact',
-    languageSwitch: 'Language',
+    languageSwitch: 'Choose language',
+    skipToContent: 'Skip to content',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    backToTop: 'Back to top',
   },
   hero: {
     status: 'Available for opportunities',
     role: 'AI Researcher & Engineer',
+    headline: 'Turning AI into decisions that work.',
     intro: (
       <>
-        AI engineer with a chemical-engineering research background, focused on making AI outputs usable for real
-        decisions — <Text weight="semibold">Agentic AI</Text> verified by{' '}
-        <Text weight="semibold">mathematical optimization</Text>, <Text weight="semibold">knowledge-graph RAG</Text>{' '}
+        I build AI for industry, grounded in chemical-engineering research - <strong>Agentic AI</strong> verified by{' '}
+        <strong>mathematical optimization</strong>, <strong>knowledge-graph RAG</strong>{' '}
         that cites its sources, and forecasts turned into procurement and production plans across refining,
         petrochemicals, manufacturing and consulting.
       </>
@@ -33,12 +35,12 @@ export const en: Content = {
   sections: {
     experience: {
       title: 'Work Experience',
-      subtitle: 'From research labs to top-tier consulting firms — driving AI transformation across industries.',
+      subtitle: 'Applying AI across research, consulting, and industrial operations.',
     },
     research: {
       title: 'Research & Activities',
       subtitle:
-        'Graduate research with industry partners and government R&D — turning predictions, models and guidelines into decisions engineers can act on.',
+        'Graduate research with industry partners and government R&D - turning predictions, models and guidelines into decisions engineers can act on.',
     },
     projects: {
       title: 'Featured Projects',
@@ -48,30 +50,34 @@ export const en: Content = {
       title: 'Publications & Presentations',
       subtitle: 'Peer-reviewed journal work and conference presentations from graduate research.',
     },
-    skills: {title: 'Technical Skills', subtitle: 'Organized by domain, implementation, and tooling.'},
+    skills: {title: 'Technical Skills', subtitle: 'The tools I use to frame problems, build models, and deliver working systems.'},
     languages: {title: 'Languages'},
-    patents: {title: 'Patents', subtitle: 'Patent application at the intersection of AI and safety engineering.'},
-    github: {title: 'GitHub Contributions', subtitle: 'Select public repositories demonstrating applied AI research.'},
+    patents: {title: 'Patent Application', subtitle: 'Patent application at the intersection of AI and safety engineering.'},
+    github: {title: 'GitHub Contributions', subtitle: 'Explore the AI systems and public projects I build.'},
     education: {title: 'Education'},
   },
   github: {
     loadError: 'Could not load contribution data.',
     loading: 'Loading contributions…',
-    caption: 'github.com/jsjong98 — contribution activity',
-    total: count => `${count.toLocaleString()} contributions in the last year`,
-    cellTitle: (count, date) => `${count} contribution${count !== 1 ? 's' : ''} on ${date}`,
+    caption: 'github.com/jsjong98 - contribution activity',
+    total: count => `${count.toLocaleString('en-US')} contributions in the last year`,
+    cellTitle: (count, date) => `${count.toLocaleString('en-US')} contribution${count !== 1 ? 's' : ''} on ${new Intl.DateTimeFormat('en-US', {dateStyle: 'long', timeZone: 'UTC'}).format(new Date(date))}`,
     calendarLabel: 'GitHub contribution calendar for the last year',
     less: 'Less',
     more: 'More',
+    profileLink: 'View GitHub profile',
+    retry: 'Try again',
   },
   projectLinkLabel: 'View on GitHub',
+  externalLinkHint: ' (opens in a new tab)',
+  timelineDetails: 'Expand or collapse details',
   contactCopy: {
-    heading: 'Let\u2019s build something remarkable.',
+    heading: 'Have a problem we can solve together?',
     body: 'Open to research collaborations, consulting roles, and full-time AI engineering or product positions. Based in Korea, available globally.',
     locationLabel: 'Location',
   },
   footer: {
-    copyright: '© 2026 Jonghwan Oh — AI Researcher & Engineer',
+    copyright: '© 2026 Jonghwan Oh - AI Researcher & Engineer',
     region: 'Korea',
   },
   experience: [
@@ -82,10 +88,10 @@ export const en: Content = {
       role: 'AI Engineer',
       badge: {label: 'Current', variant: 'info'},
       points: [
-        'Refinery Company — production re-planning PoC (3-person team): owned the end-to-end pipeline design, the shortfall LP model, and the site-constraint checker — event interpretation → impact assessment → shortfall calculation → re-planning → downstream validation → comparison report',
+        'Refinery Company - production re-planning PoC (3-person team): owned the end-to-end pipeline design, the shortfall LP model, and the site-constraint checker - event interpretation → impact assessment → shortfall calculation → re-planning → downstream validation → comparison report',
         'Extracted constraints from the client’s two planning-system model files (crude blending & downstream operations), merged them with unwritten site rules, and codified 20 feasibility rules that screen AI-proposed adjustments before the HiGHS-based LP recomputes crude-group shortfalls',
         'Fed rejection reasons back into the agent’s next attempt and attached attempt history and margin impact to each candidate plan; the team produced a zero-shortfall adjustment for the representative scenario, shared at the client’s interim review',
-        'Refinery Company — equipment ontology project (ongoing): gathering requirements through interviews with mechanical, instrumentation, electrical and equipment engineering teams, defining scope, and designing an ontology that links equipment data and maintenance history for a troubleshooting assistant (ontology design in progress; chatbot development not yet started)',
+        'Refinery Company - equipment ontology project (ongoing): gathering requirements through interviews with mechanical, instrumentation, electrical and equipment engineering teams, defining scope, and designing an ontology that links equipment data and maintenance history for a troubleshooting assistant (ontology design in progress; chatbot development not yet started)',
       ],
     },
     {
@@ -94,7 +100,7 @@ export const en: Content = {
       location: 'Seoul, Korea',
       role: 'Research Assistant',
       points: [
-        'Drafted the decision criteria and built an AI classifier to assess AI applicability for ~4,000 HR tasks across 6 group affiliates — a staged check of legal/regulatory constraints, decision & approval accountability, and need for human interaction, with later stages skipped once a task is judged human-owned',
+        'Drafted the decision criteria and built an AI classifier to assess AI applicability for ~4,000 HR tasks across 6 group affiliates - a staged check of legal/regulatory constraints, decision & approval accountability, and need for human interaction, with later stages skipped once a task is judged human-owned',
         'Reviewed classifications at the sub-task level with the team, e.g. splitting affiliate opinion-gathering into AI-sent requests and human analysis',
         'Contributed to evaluating and sequencing 67 priority initiatives into a phased roadmap; proposed data-readiness as a sequencing criterion, build-vs-buy comparison, and pilot-team roles, KPIs and review checkpoints',
       ],
@@ -105,7 +111,7 @@ export const en: Content = {
       location: 'Seoul, Korea',
       role: 'Research Analyst',
       points: [
-        'Built a production-planning optimization model for 1,000+ electronic-materials product families with a team of 3 consultants — owning data preparation, model design & implementation, and scenario analysis',
+        'Built a production-planning optimization model for 1,000+ electronic-materials product families with a team of 3 consultants - owning data preparation, model design & implementation, and scenario analysis',
         'Prepared and joined production/sales interviews, then encoded customer due dates as hard constraints (0-day delay for priority customers, ≤7 days for others) and changeover downtime as the objective, including inter-plant volume reallocation',
         'Ran constraint scenarios for joint production–sales reviews; the model produced a plan with 20% less changeover downtime than the existing plan, which became the baseline for the joint review',
       ],
@@ -117,7 +123,7 @@ export const en: Content = {
       role: 'Research Assistant',
       points: [
         'Designed the analysis architecture, built models, and integrated results for an internal employee-attrition prediction project using synthetic employee data built on the IBM HR dataset (1,470 employees)',
-        'Split the problem into 5 analysis modules — HR records (XGBoost + SHAP), behavioral change (Transformer autoencoder anomaly score), organizational relationships, sentiment/burnout text signals, and external labor market',
+        'Split the problem into 5 analysis modules - HR records (XGBoost + SHAP), behavioral change (Transformer autoencoder anomaly score), organizational relationships, sentiment/burnout text signals, and external labor market',
         'Implemented the integration logic combining expert AHP weights and Bayesian-optimized weights 50/50 into Low / Potential / High risk tiers; the team placed 4th of 76 teams in the firm’s internal AI competition',
       ],
     },
@@ -143,7 +149,7 @@ export const en: Content = {
       badge: {label: 'Gov R&D', variant: 'neutral'},
       points: [
         'Structured 242 safety guidelines (238 KOSHA, 4 OSHA) into a hierarchical knowledge base and implemented it as a Neo4j knowledge graph that preserves each clause’s parent context',
-        'Designed the KG-RAG Q&A flow — LLM-generated Cypher queries with direct and multi-hop retrieval — reaching 95% average accuracy across the 242 guidelines; filed as a Korean patent',
+        'Designed the KG-RAG Q&A flow - LLM-generated Cypher queries with direct and multi-hop retrieval - reaching 95% average accuracy across the 242 guidelines; filed as a Korean patent',
         'Also worked on upgrading the guideline classification model and a life-cycle environmental-impact calculation engine',
       ],
     },
@@ -151,7 +157,7 @@ export const en: Content = {
       period: 'May 2023 – Oct 2023',
       company: 'SKKU Startup Support Foundation',
       location: 'Suwon, Korea · Lab Startup Club',
-      role: 'President & Development Lead — ADSP',
+      role: 'President & Development Lead - ADSP',
       badge: {label: 'Award', variant: 'neutral'},
       points: [
         'Interviewed process engineers from industry to turn repetitive manual design work into requirements: automated condition input, automated economic evaluation, and environmental assessment',
@@ -172,7 +178,7 @@ export const en: Content = {
       name: 'Agentic AI System',
       context: 'Multi-Module Attrition Prediction · PwC',
       description:
-        'Five analysis modules — HR records (XGBoost + SHAP), behavioral anomalies (Transformer autoencoder), relationships, text sentiment, and external market — combined with AHP + Bayesian-optimized weights into three risk tiers. Placed 4th of 76 teams in an internal AI competition.',
+        'Five analysis modules - HR records (XGBoost + SHAP), behavioral anomalies (Transformer autoencoder), relationships, text sentiment, and external market - combined with AHP + Bayesian-optimized weights into three risk tiers. Placed 4th of 76 teams in an internal AI competition.',
       tags: ['LangGraph', 'XGBoost', 'SHAP', 'Transformer', 'Neo4j', 'React'],
       href: 'https://github.com/jsjong98/Agentic_AI_system',
     },
@@ -180,7 +186,7 @@ export const en: Content = {
       name: 'AX Lens System',
       context: 'HR Task Classification · PwC',
       description:
-        'Classifies ~4,000 HR tasks across 6 affiliates as AI- or human-owned with a 3-stage knock-out LLM logic (regulation → accountability → human interaction), keeping the reasoning for each decision reviewable by consultants.',
+        'Classifies ~4,000 HR tasks across 6 affiliates as AI- or human-owned with a 3-stage LLM decision process (regulation → accountability → human interaction), keeping the reasoning for each decision reviewable by consultants.',
       tags: ['LLM', 'FastAPI', 'Next.js', 'TypeScript'],
       href: 'https://github.com/jsjong98/ax-lens-system',
     },
@@ -203,7 +209,7 @@ export const en: Content = {
       name: 'Safety Knowledge Graph Chatbot',
       context: 'Knowledge Graph · RAG · Patent Filed',
       description:
-        'KG-RAG assistant over 242 KOSHA/OSHA safety guidelines. LLM-generated Cypher retrieves clauses across up to five hierarchy levels — e.g. finding a minimum-flow-line exception a baseline LLM missed — with 95% average accuracy.',
+        'KG-RAG assistant over 242 KOSHA/OSHA safety guidelines. LLM-generated Cypher retrieves clauses across up to five hierarchy levels - e.g. finding a minimum-flow-line exception a baseline LLM missed - with 95% average accuracy.',
       tags: ['RAG', 'Neo4j', 'LLM-Cypher', 'NLP'],
     },
   ],
@@ -214,7 +220,7 @@ export const en: Content = {
       items: [
         'Agentic AI (Multi-Agent)',
         'Knowledge Graph · RAG',
-        'eXplainable AI (XAI)',
+        'Explainable AI (XAI)',
         'Time-Series Forecasting',
         'Mathematical Optimization (LP / MIP)',
         'Uncertainty Quantification',
@@ -258,13 +264,13 @@ export const en: Content = {
     {
       name: 'Korean',
       level: 'Native',
-      description: 'Mother tongue — full professional and academic fluency',
+      description: 'Mother tongue - full professional and academic fluency',
     },
     {
       name: 'English',
       level: 'Fluent',
       description:
-        'Business & academic English — consulting deliverables, research papers, international collaboration',
+        'Business & academic English - consulting deliverables, research papers, international collaboration',
     },
   ],
   patent: {
@@ -281,7 +287,7 @@ export const en: Content = {
         'Sustainable hydrogen production from biogas under operational variability: Feed forecasting with a rolling horizon scheduling strategy',
       venue: 'Journal of Cleaner Production (Elsevier, SCIE) · Vol. 554, 148139',
       date: 'Apr 2026',
-      authorship: 'Co-author (3 / 4)',
+      authorship: 'Co-author (3rd of 4 authors)',
       href: 'https://doi.org/10.1016/j.jclepro.2026.148139',
     },
     {
@@ -289,7 +295,7 @@ export const en: Content = {
       title: 'Extrapolation Error Quantification for the Discovery of Optimal Experimental Conditions',
       venue: '2024 AIChE Annual Meeting · Poster',
       date: 'Oct 2024',
-      authorship: 'First author (1 / 7)',
+      authorship: 'First author (7 authors)',
     },
     {
       kind: 'Conference',
@@ -311,7 +317,7 @@ export const en: Content = {
     {
       name: 'ax-lens-system',
       description:
-        'Full-stack HR task AI/human classification system. FastAPI backend + Next.js 15 frontend with 3-stage knock-out LLM classification logic.',
+        'Full-stack HR task AI/human classification system. FastAPI backend + Next.js 15 frontend with 3-stage LLM decision process.',
       meta: ['TypeScript 48.1%', 'Python 44.1%'],
       href: 'https://github.com/jsjong98/ax-lens-system',
     },
@@ -325,15 +331,15 @@ export const en: Content = {
   ],
   education: [
     {
-      period: 'Since Mar 2023',
+      period: 'Entered Mar 2023',
       degree: 'Integrated M.S./Ph.D. Program in Chemical Engineering (Coursework Completed)',
-      school: 'Sungkyunkwan University — Suwon, Korea',
+      school: 'Sungkyunkwan University - Suwon, Korea',
       detail: 'GPA: 4.1 / 4.5 · Intelligent Process Systems Lab · AI for process safety & industrial optimization',
     },
     {
       period: 'Mar 2017 – Feb 2023',
       degree: 'Bachelor of Applied Chemical Engineering',
-      school: 'Chungnam National University — Daejeon, Korea',
+      school: 'Chungnam National University - Daejeon, Korea',
       detail: 'Applied Chemical Engineering · Foundation in process systems & chemistry',
     },
   ],

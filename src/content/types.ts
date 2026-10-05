@@ -56,10 +56,15 @@ export type Content = {
     github: string;
     contact: string;
     languageSwitch: string;
+    skipToContent: string;
+    openMenu: string;
+    closeMenu: string;
+    backToTop: string;
   };
   hero: {
     status: string;
     role: string;
+    headline: string;
     intro: ReactNode;
     contactCta: string;
     projectsCta: string;
@@ -84,8 +89,12 @@ export type Content = {
     calendarLabel: string;
     less: string;
     more: string;
+    profileLink: string;
+    retry: string;
   };
   projectLinkLabel: string;
+  externalLinkHint: string;
+  timelineDetails: string;
   contactCopy: {
     heading: string;
     body: string;
