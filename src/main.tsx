@@ -9,15 +9,21 @@ import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 
 import {App} from './App';
+import {ContentContext} from './content/context';
+import type {Content} from './content/types';
 
 // The body background lives outside the <Theme> boundary, so pin the document
 // color-scheme to the theme mode or light-dark() tokens resolve inconsistently.
 document.documentElement.style.colorScheme = 'light';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Theme theme={stoneTheme} mode="light">
-      <App />
-    </Theme>
-  </StrictMode>,
-);
+export function mount(content: Content) {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <ContentContext.Provider value={content}>
+        <Theme theme={stoneTheme} mode="light">
+          <App />
+        </Theme>
+      </ContentContext.Provider>
+    </StrictMode>,
+  );
+}

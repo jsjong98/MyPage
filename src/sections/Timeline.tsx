@@ -6,13 +6,8 @@ import {HStack, StackItem, VStack} from '@astryxdesign/core/Stack';
 import {Text} from '@astryxdesign/core/Text';
 import {Fragment} from 'react';
 
-import {experience, research, type TimelineEntry} from '../data';
-
-const BADGE_VARIANT: Record<string, 'info' | 'neutral'> = {
-  Current: 'info',
-  Industry: 'neutral',
-  'Gov R&D': 'neutral',
-};
+import {useContent} from '../content/context';
+import type {TimelineEntry} from '../content/types';
 
 function TimelineRow({entry}: {entry: TimelineEntry}) {
   return (
@@ -26,7 +21,7 @@ function TimelineRow({entry}: {entry: TimelineEntry}) {
         <VStack gap={2}>
           <HStack gap={2} vAlign="center" wrap="wrap">
             <Heading level={3}>{entry.role}</Heading>
-            {entry.badge && <Badge variant={BADGE_VARIANT[entry.badge] ?? 'neutral'} label={entry.badge} />}
+            {entry.badge && <Badge variant={entry.badge.variant} label={entry.badge.label} />}
           </HStack>
           <VStack gap={0}>
             {entry.points.map(point => (
@@ -50,7 +45,8 @@ function TimelineRow({entry}: {entry: TimelineEntry}) {
 }
 
 export function Timeline({entries}: {entries: 'experience' | 'research'}) {
-  const rows = entries === 'experience' ? experience : research;
+  const content = useContent();
+  const rows = content[entries];
   return (
     <VStack>
       {rows.map((entry, i) => (

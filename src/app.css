@@ -119,3 +119,9 @@ section[id] {
     scroll-behavior: auto;
   }
 }
+
+/* Korean reads better when line breaks fall between words, not syllables */
+:lang(ko) {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}

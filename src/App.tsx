@@ -2,13 +2,15 @@ import {Badge} from '@astryxdesign/core/Badge';
 import {Divider} from '@astryxdesign/core/Divider';
 import {Item} from '@astryxdesign/core/Item';
 import {Section} from '@astryxdesign/core/Section';
+import {SegmentedControl, SegmentedControlItem} from '@astryxdesign/core/SegmentedControl';
 import {HStack, VStack} from '@astryxdesign/core/Stack';
 import {Text} from '@astryxdesign/core/Text';
 import {TopNav, TopNavHeading, TopNavItem} from '@astryxdesign/core/TopNav';
 import {Award, BookOpen, Briefcase, GitBranch, GraduationCap, Landmark, Languages as LanguagesIcon, MapPin} from 'lucide-react';
 import {Fragment} from 'react';
 
-import {contact, education, languages, patent, publications} from './data';
+import {useContent} from './content/context';
+import type {Locale} from './content/types';
 import {Contact} from './sections/Contact';
 import {GitHubSection} from './sections/GitHubSection';
 import {Hero} from './sections/Hero';
@@ -17,21 +19,47 @@ import {Projects} from './sections/Projects';
 import {Skills} from './sections/Skills';
 import {Timeline} from './sections/Timeline';
 
+// Each locale is its own static page (/MyPage/EN/, /MyPage/KR/); switching
+// keeps the current section anchor.
+function switchLocale(locale: string) {
+  window.location.href = `${import.meta.env.BASE_URL}${locale}/${window.location.hash}`;
+}
+
 export function App() {
+  const {
+    locale,
+    name,
+    nav,
+    sections,
+    footer,
+    languages,
+    publications,
+    patent,
+    education,
+    contact,
+  } = useContent();
   return (
     <>
       <header className="site-header">
         <TopNav
-          label="Main navigation"
-          heading={<TopNavHeading heading="Jonghwan Oh" headingHref="#top" />}
+          label={nav.label}
+          heading={<TopNavHeading heading={name} headingHref="#top" />}
           endContent={
             <HStack gap={1} vAlign="center">
-              <TopNavItem label="Experience" href="#experience" />
-              <TopNavItem label="Projects" href="#projects" />
-              <TopNavItem label="Publications" href="#publications" />
-              <TopNavItem label="Skills" href="#skills" />
-              <TopNavItem label="GitHub" href="#github" />
-              <TopNavItem label="Contact" href="#contact" />
+              <TopNavItem label={nav.experience} href="#experience" />
+              <TopNavItem label={nav.projects} href="#projects" />
+              <TopNavItem label={nav.publications} href="#publications" />
+              <TopNavItem label={nav.skills} href="#skills" />
+              <TopNavItem label={nav.github} href="#github" />
+              <TopNavItem label={nav.contact} href="#contact" />
+              <SegmentedControl
+                label={nav.languageSwitch}
+                size="sm"
+                value={locale}
+                onChange={value => value !== locale && switchLocale(value as Locale)}>
+                <SegmentedControlItem value="EN" label="EN" />
+                <SegmentedControlItem value="KR" label="KR" />
+              </SegmentedControl>
             </HStack>
           }
         />
@@ -42,30 +70,30 @@ export function App() {
 
         <PageSection
           id="experience"
-          title="Work Experience"
-          subtitle="From research labs to top-tier consulting firms — driving AI transformation across industries.">
+          title={sections.experience.title}
+          subtitle={sections.experience.subtitle}>
           <Timeline entries="experience" />
         </PageSection>
 
         <PageSection
           id="research"
-          title="Research & Activities"
-          subtitle="Graduate research with industry partners and government R&D — turning predictions, models and guidelines into decisions engineers can act on.">
+          title={sections.research.title}
+          subtitle={sections.research.subtitle}>
           <Timeline entries="research" />
         </PageSection>
 
         <PageSection
           id="projects"
-          title="Featured Projects"
-          subtitle="Selected work spanning agentic AI, explainability systems, and intelligent automation.">
+          title={sections.projects.title}
+          subtitle={sections.projects.subtitle}>
           <Projects />
         </PageSection>
 
-        <PageSection id="skills" title="Technical Skills" subtitle="Organized by domain, implementation, and tooling.">
+        <PageSection id="skills" title={sections.skills.title} subtitle={sections.skills.subtitle}>
           <Skills />
         </PageSection>
 
-        <PageSection id="languages" title="Languages">
+        <PageSection id="languages" title={sections.languages.title}>
           <VStack>
             {languages.map((lang, i) => (
               <Fragment key={lang.name}>
@@ -84,8 +112,8 @@ export function App() {
 
         <PageSection
           id="publications"
-          title="Publications & Presentations"
-          subtitle="Peer-reviewed journal work and conference presentations from graduate research.">
+          title={sections.publications.title}
+          subtitle={sections.publications.subtitle}>
           <VStack>
             {publications.map((pub, i) => (
               <Fragment key={pub.title}>
@@ -127,8 +155,8 @@ export function App() {
 
         <PageSection
           id="patents"
-          title="Patents"
-          subtitle="Patent application at the intersection of AI and safety engineering.">
+          title={sections.patents.title}
+          subtitle={sections.patents.subtitle}>
           <Item
             startContent={<Landmark size={18} aria-hidden />}
             align="start"
@@ -151,7 +179,7 @@ export function App() {
 
         <GitHubSection />
 
-        <PageSection id="education" title="Education">
+        <PageSection id="education" title={sections.education.title}>
           <VStack>
             {education.map((edu, i) => (
               <Fragment key={edu.degree}>
@@ -182,7 +210,7 @@ export function App() {
       <footer className="site-footer">
         <Section variant="transparent" paddingBlock={5}>
           <HStack justify="between" vAlign="center" wrap="wrap" gap={2}>
-            <Text type="supporting">© 2026 Jonghwan Oh — AI Researcher &amp; Engineer</Text>
+            <Text type="supporting">{footer.copyright}</Text>
             <HStack gap={2} vAlign="center">
               <a href={contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="footer-icon">
                 <GitBranch size={16} aria-hidden />
@@ -192,7 +220,7 @@ export function App() {
               </a>
               <HStack gap={0.5} vAlign="center">
                 <MapPin size={14} aria-hidden />
-                <Text type="supporting">Korea</Text>
+                <Text type="supporting">{footer.region}</Text>
               </HStack>
             </HStack>
           </HStack>

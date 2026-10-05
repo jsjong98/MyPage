@@ -3,9 +3,10 @@ import {Heading} from '@astryxdesign/core/Heading';
 import {HStack, VStack} from '@astryxdesign/core/Stack';
 import {Token} from '@astryxdesign/core/Token';
 
-import {skillGroups} from '../data';
+import {useContent} from '../content/context';
 
 export function Skills() {
+  const {skillGroups} = useContent();
   return (
     <Grid columns={{minWidth: 280, max: 2}} gap={5}>
       {skillGroups.map(group => (

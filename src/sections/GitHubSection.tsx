@@ -6,7 +6,7 @@ import {HStack, StackItem, VStack} from '@astryxdesign/core/Stack';
 import {Text} from '@astryxdesign/core/Text';
 import {useEffect, useState} from 'react';
 
-import {repos} from '../data';
+import {useContent} from '../content/context';
 import {PageSection} from './PageSection';
 
 type Day = {date: string; count: number; level: number};
@@ -39,6 +39,7 @@ function groupIntoWeeks(days: Day[]): Array<Array<Day | null>> {
 }
 
 function ContributionGraph() {
+  const {github: copy} = useContent();
   const [state, setState] = useState<ContribState>({status: 'loading'});
 
   useEffect(() => {
@@ -63,20 +64,20 @@ function ContributionGraph() {
   }, []);
 
   if (state.status === 'error') {
-    return <Text type="supporting">Could not load contribution data.</Text>;
+    return <Text type="supporting">{copy.loadError}</Text>;
   }
   if (state.status === 'loading') {
-    return <Text type="supporting">Loading contributions…</Text>;
+    return <Text type="supporting">{copy.loading}</Text>;
   }
 
   return (
     <VStack gap={2}>
       <HStack justify="between" wrap="wrap" gap={2}>
-        <Text type="supporting">github.com/jsjong98 — contribution activity</Text>
-        <Text type="label">{state.total.toLocaleString()} contributions in the last year</Text>
+        <Text type="supporting">{copy.caption}</Text>
+        <Text type="label">{copy.total(state.total)}</Text>
       </HStack>
       <div className="contrib-scroll">
-        <div className="contrib-weeks" role="img" aria-label="GitHub contribution calendar for the last year">
+        <div className="contrib-weeks" role="img" aria-label={copy.calendarLabel}>
           {state.weeks.map((week, wi) => (
             <div key={wi} className="contrib-week">
               {week.map((day, di) =>
@@ -85,7 +86,7 @@ function ContributionGraph() {
                     key={day.date}
                     className="contrib-cell"
                     data-level={Math.min(day.level, 4)}
-                    title={`${day.count} contribution${day.count !== 1 ? 's' : ''} on ${day.date}`}
+                    title={copy.cellTitle(day.count, day.date)}
                   />
                 ) : (
                   <div key={`pad-${di}`} className="contrib-cell" data-empty="true" />
@@ -96,22 +97,20 @@ function ContributionGraph() {
         </div>
       </div>
       <HStack gap={0.5} justify="end" vAlign="center">
-        <Text type="supporting">Less</Text>
+        <Text type="supporting">{copy.less}</Text>
         {[0, 1, 2, 3, 4].map(level => (
           <div key={level} className="contrib-cell" data-level={level} />
         ))}
-        <Text type="supporting">More</Text>
+        <Text type="supporting">{copy.more}</Text>
       </HStack>
     </VStack>
   );
 }
 
 export function GitHubSection() {
+  const {repos, sections} = useContent();
   return (
-    <PageSection
-      id="github"
-      title="GitHub Contributions"
-      subtitle="Select public repositories demonstrating applied AI research.">
+    <PageSection id="github" title={sections.github.title} subtitle={sections.github.subtitle}>
       <VStack gap={5}>
         <ContributionGraph />
         <Grid columns={{minWidth: 280, max: 3}} gap={3}>

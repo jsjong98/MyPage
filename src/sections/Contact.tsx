@@ -5,19 +5,19 @@ import {HStack, StackItem, VStack} from '@astryxdesign/core/Stack';
 import {Text} from '@astryxdesign/core/Text';
 import {Briefcase, GitBranch, MapPin} from 'lucide-react';
 
-import {contact} from '../data';
+import {useContent} from '../content/context';
 
 export function Contact() {
+  const {contact, contactCopy} = useContent();
   return (
     <VStack as="section" id="contact" paddingBlock={8}>
       <Section variant="muted" padding={6}>
         <HStack gap={8} wrap="wrap" vAlign="start">
           <StackItem size="fill">
             <VStack gap={2} maxWidth={480}>
-              <Heading level={2}>Let&apos;s build something remarkable.</Heading>
+              <Heading level={2}>{contactCopy.heading}</Heading>
               <Text type="body" color="secondary" as="p" textWrap="pretty">
-                Open to research collaborations, consulting roles, and full-time AI engineering or product positions.
-                Based in Korea, available globally.
+                {contactCopy.body}
               </Text>
             </VStack>
           </StackItem>
@@ -38,7 +38,7 @@ export function Contact() {
             />
             <Item
               startContent={<MapPin size={18} aria-hidden />}
-              label="Location"
+              label={contactCopy.locationLabel}
               description={contact.location}
             />
           </VStack>
